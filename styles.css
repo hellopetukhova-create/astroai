@@ -1,21 +1,21 @@
 :root {
-  --bg: #f6f8ff;
+  --bg: #f8fbff;
   --bg-2: #eef4ff;
 
-  --card: rgba(255, 255, 255, 0.84);
-  --card-strong: rgba(255, 255, 255, 0.94);
+  --card: rgba(255, 255, 255, 0.54);
+  --card-strong: rgba(255, 255, 255, 0.68);
 
-  --text: #2b2c35;
-  --muted: #8b8b99;
+  --text: #242635;
+  --muted: #7f7d8f;
 
-  --line: #e5e8f2;
+  --line: rgba(255, 255, 255, 0.72);
 
-  --accent: #7b6cff;
-  --accent-soft: #dfe2ff;
-  --accent-blue: #8ac7e8;
-  --accent-deep: #4f4a92;
+  --accent: #7c6dff;
+  --accent-soft: rgba(124, 109, 255, 0.14);
+  --accent-blue: #72d6ff;
+  --accent-deep: #4a438f;
 
-  --shadow: 0 18px 50px rgba(80, 86, 140, 0.12);
+  --shadow: 0 22px 60px rgba(87, 92, 150, 0.13);
   --radius-lg: 34px;
   --radius-md: 24px;
 }
@@ -32,9 +32,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
   background:
-    radial-gradient(circle at 20% 0%, rgba(200, 232, 255, 0.9), transparent 32%),
-    radial-gradient(circle at 100% 15%, rgba(217, 214, 255, 0.9), transparent 30%),
-    linear-gradient(180deg, #fbfbff 0%, var(--bg-2) 100%);
+    radial-gradient(circle at 18% 12%, rgba(255, 237, 220, 0.95), transparent 28%),
+    radial-gradient(circle at 80% 18%, rgba(197, 232, 255, 0.86), transparent 28%),
+    radial-gradient(circle at 50% 75%, rgba(220, 214, 255, 0.62), transparent 32%),
+    linear-gradient(135deg, #fff7ef 0%, #f7fbff 44%, #eef4ff 100%);
 }
 
 body::before {
@@ -62,17 +63,17 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.34;
+  opacity: 0.42;
 
   background:
-    radial-gradient(circle at 18% 16%, rgba(123,108,255,0.16), transparent 16%),
-    radial-gradient(circle at 82% 22%, rgba(138,199,232,0.2), transparent 18%),
-    radial-gradient(circle at 52% 78%, rgba(123,108,255,0.10), transparent 24%),
+    radial-gradient(circle at 18% 16%, rgba(255,255,255,0.9), transparent 10%),
+    radial-gradient(circle at 82% 22%, rgba(114,214,255,0.22), transparent 18%),
+    radial-gradient(circle at 52% 78%, rgba(124,109,255,0.12), transparent 24%),
     repeating-radial-gradient(
-      circle at 50% 42%,
-      transparent 0 86px,
-      rgba(123,108,255,0.055) 87px 88px,
-      transparent 89px 168px
+      circle at 52% 42%,
+      transparent 0 92px,
+      rgba(124,109,255,0.055) 93px 94px,
+      transparent 95px 178px
     );
 }
 
@@ -201,32 +202,54 @@ button {
 }
 
 .moon-visual-wrap {
-  width: 168px;
-  height: 168px;
+  width: 176px;
+  height: 176px;
   margin: 0 auto 24px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 50%, rgba(123, 108, 255, 0.12), transparent 62%),
-    radial-gradient(circle at 50% 50%, rgba(138, 199, 232, 0.16), transparent 70%);
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.30), transparent 36%),
+    radial-gradient(circle at 50% 50%, rgba(124, 109, 255, 0.15), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(114, 214, 255, 0.16), transparent 72%);
+  box-shadow:
+    inset 0 0 22px rgba(255,255,255,0.18),
+    0 0 38px rgba(124,109,255,0.16);
 }
 
 .moon-visual {
   position: relative;
-  width: 118px;
-  height: 118px;
+  width: 122px;
+  height: 122px;
   overflow: hidden;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 28%, #fff9dc 0 6px, transparent 7px),
-    radial-gradient(circle at 68% 38%, rgba(196, 164, 98, 0.22) 0 8px, transparent 9px),
-    radial-gradient(circle at 48% 68%, rgba(196, 164, 98, 0.18) 0 7px, transparent 8px),
-    radial-gradient(circle at 42% 42%, #fff5c7 0%, #ead083 46%, #caa85e 100%);
+    radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0 5px, transparent 7px),
+    radial-gradient(circle at 64% 36%, rgba(180, 180, 190, 0.32) 0 8px, transparent 10px),
+    radial-gradient(circle at 46% 66%, rgba(150, 150, 170, 0.24) 0 7px, transparent 9px),
+    radial-gradient(circle at 42% 42%, #f9fbff 0%, #cfd7e9 45%, #8c98b8 100%);
   box-shadow:
-    inset -14px -16px 26px rgba(92, 66, 30, 0.18),
-    inset 10px 10px 20px rgba(255, 255, 255, 0.35),
-    0 18px 38px rgba(123, 108, 255, 0.22);
+    inset -16px -18px 26px rgba(37, 40, 65, 0.28),
+    inset 12px 10px 20px rgba(255,255,255,0.48),
+    0 0 28px rgba(255,255,255,0.30),
+    0 18px 45px rgba(124,109,255,0.22);
+}
+
+body.theme-cosmic .moon-visual-wrap {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(100,232,255,0.20), transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(194,179,255,0.16), transparent 64%);
+  box-shadow:
+    0 0 44px rgba(100,232,255,0.20),
+    0 0 80px rgba(194,179,255,0.12);
+}
+
+body.theme-cosmic .moon-visual {
+  box-shadow:
+    inset -16px -18px 28px rgba(7,8,23,0.45),
+    inset 12px 10px 20px rgba(255,255,255,0.28),
+    0 0 38px rgba(100,232,255,0.22),
+    0 18px 48px rgba(0,0,0,0.34);
 }
 
 .moon-shadow {
@@ -338,12 +361,23 @@ button {
 .nav-btn {
   width: 44px;
   height: 44px;
-  border: 0;
+  border: 1px solid rgba(214, 220, 238, 0.88);
   border-radius: 15px;
-  background: rgba(255,255,255,0.75);
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,0.96), transparent 32%),
+    linear-gradient(145deg, rgba(255,255,255,0.78), rgba(246,248,255,0.7));
   color: var(--accent-deep);
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1;
+  font-weight: 650;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 8px 18px rgba(80,86,140,0.055);
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.nav-btn:active {
+  transform: scale(0.96);
 }
 
 .calendar {
@@ -438,27 +472,27 @@ button {
 }
 
 body.theme-cosmic {
-  --bg: #0f1020;
-  --bg-2: #171832;
+  --bg: #070817;
+  --bg-2: #11142b;
 
-  --card: rgba(24, 25, 48, 0.78);
-  --card-strong: rgba(29, 30, 58, 0.88);
+  --card: rgba(20, 23, 48, 0.52);
+  --card-strong: rgba(25, 29, 58, 0.64);
 
-  --text: #f4f0ff;
-  --muted: #aaa4c5;
+  --text: #f7f4ff;
+  --muted: #a9a6c5;
 
-  --line: rgba(255, 255, 255, 0.11);
+  --line: rgba(118, 231, 255, 0.22);
 
-  --accent: #b7a7ff;
-  --accent-soft: rgba(183, 167, 255, 0.16);
-  --accent-blue: #78d1ff;
-  --accent-deep: #d8d0ff;
+  --accent: #c2b3ff;
+  --accent-soft: rgba(194, 179, 255, 0.16);
+  --accent-blue: #64e8ff;
+  --accent-deep: #e7e0ff;
 
-background:
-  radial-gradient(circle at 18% 8%, rgba(87, 120, 255, 0.26), transparent 30%),
-  radial-gradient(circle at 88% 18%, rgba(177, 124, 255, 0.22), transparent 32%),
-  radial-gradient(circle at 50% 100%, rgba(76, 211, 255, 0.12), transparent 36%),
-  linear-gradient(180deg, #080914 0%, #11122a 48%, #171832 100%);
+  background:
+    radial-gradient(circle at 72% 18%, rgba(0, 229, 255, 0.16), transparent 22%),
+    radial-gradient(circle at 82% 48%, rgba(179, 83, 255, 0.20), transparent 28%),
+    radial-gradient(circle at 42% 72%, rgba(73, 211, 255, 0.10), transparent 30%),
+    linear-gradient(135deg, #060714 0%, #10142d 44%, #24123c 100%);
 }
 
 body.theme-cosmic::before {
@@ -585,14 +619,23 @@ body.theme-cosmic::after {
 
 body.theme-cosmic .day {
   background:
-    radial-gradient(circle at 30% 22%, rgba(255,255,255,0.10), transparent 30%),
-    linear-gradient(145deg, rgba(255,255,255,0.085), rgba(255,255,255,0.035));
-  border: 1px solid rgba(255,255,255,0.11);
-  color: #f4f0ff;
+    linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.022));
+  border: 1px solid rgba(100,232,255,0.14);
+  color: #f7f4ff;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.08),
-    0 10px 22px rgba(0,0,0,0.18);
-  backdrop-filter: blur(14px);
+    0 0 18px rgba(100,232,255,0.045),
+    0 10px 24px rgba(0,0,0,0.22);
+}
+
+body.theme-cosmic .day.selected {
+  background:
+    linear-gradient(145deg, rgba(194,179,255,0.30), rgba(100,232,255,0.18));
+  border-color: rgba(100,232,255,0.34);
+  box-shadow:
+    0 0 0 4px rgba(100,232,255,0.10),
+    0 0 26px rgba(100,232,255,0.16),
+    0 16px 34px rgba(0,0,0,0.24);
 }
 
 body.theme-cosmic .day:hover {
@@ -607,17 +650,6 @@ body.theme-cosmic .day.today {
     inset 0 1px 0 rgba(255,255,255,0.10),
     0 0 0 5px rgba(183,167,255,0.08),
     0 12px 26px rgba(0,0,0,0.22);
-}
-
-body.theme-cosmic .day.selected {
-  background:
-    radial-gradient(circle at 28% 20%, rgba(255,255,255,0.18), transparent 30%),
-    linear-gradient(145deg, rgba(183,167,255,0.52), rgba(120,209,255,0.32));
-  border-color: rgba(255,255,255,0.22);
-  color: #ffffff;
-  box-shadow:
-    0 0 0 4px rgba(183,167,255,0.13),
-    0 14px 30px rgba(0,0,0,0.24);
 }
 
 body.theme-cosmic .calendar {
@@ -640,12 +672,11 @@ body.theme-cosmic .event-dot {
 
 body:not(.theme-cosmic) .day {
   background:
-    radial-gradient(circle at 28% 20%, rgba(255,255,255,0.96), transparent 32%),
-    linear-gradient(145deg, rgba(255,255,255,0.78), rgba(246,248,255,0.7));
-  border: 1px solid rgba(214, 220, 238, 0.88);
+    linear-gradient(145deg, rgba(255,255,255,0.68), rgba(255,255,255,0.32));
+  border: 1px solid rgba(255,255,255,0.72);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.92),
-    0 8px 18px rgba(80,86,140,0.055);
+    inset 0 1px 0 rgba(255,255,255,0.86),
+    0 8px 18px rgba(90,102,160,0.08);
 }
 
 body:not(.theme-cosmic) .day.today {
@@ -665,4 +696,418 @@ body:not(.theme-cosmic) .day.selected {
   box-shadow:
     0 0 0 4px rgba(123,108,255,0.10),
     0 10px 22px rgba(80,86,140,0.10);
+}
+
+body.theme-cosmic .nav-btn {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,0.10), transparent 30%),
+    linear-gradient(145deg, rgba(255,255,255,0.085), rgba(255,255,255,0.035));
+  border: 1px solid rgba(255,255,255,0.11);
+  color: #f4f0ff;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 10px 22px rgba(0,0,0,0.18);
+  backdrop-filter: blur(14px);
+}
+
+body.theme-cosmic .nav-btn:hover {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(183,167,255,0.18), transparent 34%),
+    linear-gradient(145deg, rgba(183,167,255,0.13), rgba(120,209,255,0.06));
+}
+
+body:not(.theme-cosmic) .main-card,
+body:not(.theme-cosmic) .mini-card,
+body:not(.theme-cosmic) .wide-card,
+body:not(.theme-cosmic) .calendar,
+body:not(.theme-cosmic) .month-panel,
+body:not(.theme-cosmic) .tabs,
+body:not(.theme-cosmic) .app-title,
+body:not(.theme-cosmic) .close-btn,
+body:not(.theme-cosmic) .more-btn {
+  backdrop-filter: blur(24px) saturate(135%);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.76),
+    0 22px 55px rgba(90, 102, 160, 0.12);
+}
+
+body:not(.theme-cosmic) .main-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.66), rgba(255,255,255,0.28)),
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.62), transparent 28%),
+    radial-gradient(circle at 78% 28%, rgba(114,214,255,0.18), transparent 30%);
+}
+
+body:not(.theme-cosmic) .mini-card,
+body:not(.theme-cosmic) .wide-card {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.68), rgba(255,255,255,0.36));
+}
+
+body.theme-cosmic .main-card,
+body.theme-cosmic .mini-card,
+body.theme-cosmic .wide-card,
+body.theme-cosmic .calendar,
+body.theme-cosmic .month-panel,
+body.theme-cosmic .tabs,
+body.theme-cosmic .app-title,
+body.theme-cosmic .close-btn,
+body.theme-cosmic .more-btn {
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  border: 1px solid rgba(100, 232, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 0 0 1px rgba(194,179,255,0.06),
+    0 0 28px rgba(100,232,255,0.10),
+    0 24px 60px rgba(0,0,0,0.32);
+}
+
+body.theme-cosmic .main-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025)),
+    radial-gradient(circle at 72% 30%, rgba(100,232,255,0.18), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(187,91,255,0.18), transparent 34%);
+}
+
+body.theme-cosmic .mini-card,
+body.theme-cosmic .wide-card {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
+}
+
+body.theme-cosmic .tab.active,
+body.theme-cosmic .theme-chip.active {
+  background:
+    linear-gradient(135deg, rgba(194,179,255,0.95), rgba(100,232,255,0.86));
+  color: #11142b;
+  box-shadow:
+    0 0 22px rgba(100,232,255,0.28),
+    0 12px 28px rgba(0,0,0,0.22);
+}
+
+/* === My.Astro Moon: Celestial Glass / Mystic Night final style === */
+
+body {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+body:not(.theme-cosmic) {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    url("./assets/bg-glass.png") center / cover fixed no-repeat;
+}
+
+body.theme-cosmic {
+  background:
+    linear-gradient(rgba(4, 6, 18, 0.18), rgba(4, 6, 18, 0.18)),
+    url("./assets/bg-mystic.png") center / cover fixed no-repeat;
+}
+
+/* убираем старые точечные слои, фон теперь картинкой */
+body::before,
+body::after,
+body.theme-cosmic::before,
+body.theme-cosmic::after {
+  display: none;
+}
+
+/* общий glass */
+.main-card,
+.mini-card,
+.wide-card,
+.calendar,
+.month-panel,
+.tabs,
+.app-title,
+.close-btn,
+.more-btn,
+.nav-btn,
+.theme-chip {
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+/* light glass */
+body:not(.theme-cosmic) .main-card,
+body:not(.theme-cosmic) .mini-card,
+body:not(.theme-cosmic) .wide-card,
+body:not(.theme-cosmic) .calendar,
+body:not(.theme-cosmic) .month-panel,
+body:not(.theme-cosmic) .tabs,
+body:not(.theme-cosmic) .app-title,
+body:not(.theme-cosmic) .close-btn,
+body:not(.theme-cosmic) .more-btn,
+body:not(.theme-cosmic) .nav-btn,
+body:not(.theme-cosmic) .theme-chip {
+  background: rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 18px 44px rgba(70, 82, 130, 0.12);
+}
+
+body:not(.theme-cosmic) .tab.active,
+body:not(.theme-cosmic) .theme-chip.active {
+  background: rgba(255, 255, 255, 0.72);
+  color: #222337;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    0 12px 26px rgba(70, 82, 130, 0.12);
+}
+
+/* dark mystic glass */
+body.theme-cosmic .main-card,
+body.theme-cosmic .mini-card,
+body.theme-cosmic .wide-card,
+body.theme-cosmic .calendar,
+body.theme-cosmic .month-panel,
+body.theme-cosmic .tabs,
+body.theme-cosmic .app-title,
+body.theme-cosmic .close-btn,
+body.theme-cosmic .more-btn,
+body.theme-cosmic .nav-btn,
+body.theme-cosmic .theme-chip {
+  background: rgba(8, 12, 32, 0.44);
+  border: 1px solid rgba(93, 226, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 24px rgba(93, 226, 255, 0.10),
+    0 18px 46px rgba(0, 0, 0, 0.28);
+}
+
+body.theme-cosmic .tab.active,
+body.theme-cosmic .theme-chip.active {
+  background: linear-gradient(135deg, rgba(194, 179, 255, 0.96), rgba(105, 220, 255, 0.9));
+  color: #0c1024;
+  box-shadow:
+    0 0 24px rgba(105, 220, 255, 0.28),
+    0 14px 30px rgba(0, 0, 0, 0.24);
+}
+
+/* calendar cells */
+.day {
+  min-height: 49px;
+  border-radius: 15px;
+  font-size: 13px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.day:active {
+  transform: scale(0.96);
+}
+
+body:not(.theme-cosmic) .day {
+  background: rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.66),
+    0 8px 18px rgba(70, 82, 130, 0.08);
+}
+
+body.theme-cosmic .day {
+  background: rgba(7, 12, 32, 0.48);
+  border: 1px solid rgba(93, 226, 255, 0.14);
+  color: #f6f2ff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(93, 226, 255, 0.05),
+    0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+body:not(.theme-cosmic) .day.selected,
+body:not(.theme-cosmic) .day.today {
+  border-color: rgba(129, 221, 255, 0.95);
+  box-shadow:
+    0 0 0 3px rgba(160, 130, 255, 0.13),
+    0 0 22px rgba(107, 224, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+body.theme-cosmic .day.selected,
+body.theme-cosmic .day.today {
+  border-color: rgba(119, 231, 255, 0.5);
+  box-shadow:
+    0 0 0 3px rgba(119, 231, 255, 0.10),
+    0 0 24px rgba(119, 231, 255, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* text refinement */
+.app-title {
+  font-size: 15px;
+  font-weight: 720;
+}
+
+.tab {
+  font-size: 14px;
+  font-weight: 680;
+}
+
+.theme-chip {
+  font-size: 13px;
+  font-weight: 680;
+}
+
+.month-panel h2 {
+  font-size: 18px;
+  font-weight: 740;
+}
+
+.month-panel p,
+.main-card p,
+.mini-card p,
+.wide-card p {
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.main-card h1 {
+  font-size: 27px;
+  font-weight: 780;
+}
+
+.mini-title {
+  font-size: 13.5px;
+  font-weight: 680;
+}
+
+.mini-card strong {
+  font-size: 18px;
+  font-weight: 740;
+}
+
+.day-number {
+  font-size: 12.5px;
+  font-weight: 740;
+}
+
+.moon {
+  font-size: 17px;
+  filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.22));
+}
+
+/* moon orb */
+.moon-visual-wrap {
+  width: 176px;
+  height: 176px;
+  margin: 0 auto 22px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.28), transparent 36%),
+    radial-gradient(circle at 50% 50%, rgba(124, 109, 255, 0.16), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(114, 214, 255, 0.18), transparent 72%);
+  box-shadow:
+    inset 0 0 22px rgba(255, 255, 255, 0.16),
+    0 0 38px rgba(124, 109, 255, 0.16);
+}
+
+body.theme-cosmic .moon-visual-wrap {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(105, 220, 255, 0.20), transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(194, 179, 255, 0.16), transparent 64%);
+  box-shadow:
+    0 0 42px rgba(105, 220, 255, 0.22),
+    0 0 80px rgba(194, 179, 255, 0.12);
+}
+
+/* === More transparent glass cards === */
+
+body:not(.theme-cosmic) .main-card,
+body:not(.theme-cosmic) .mini-card,
+body:not(.theme-cosmic) .wide-card,
+body:not(.theme-cosmic) .calendar,
+body:not(.theme-cosmic) .month-panel {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.34), rgba(255,255,255,0.14));
+  border: 1px solid rgba(255,255,255,0.72);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.68),
+    0 18px 46px rgba(70,82,130,0.10);
+}
+
+body.theme-cosmic .main-card,
+body.theme-cosmic .mini-card,
+body.theme-cosmic .wide-card,
+body.theme-cosmic .calendar,
+body.theme-cosmic .month-panel {
+  background:
+    linear-gradient(145deg, rgba(12,16,42,0.34), rgba(12,16,42,0.22));
+  border: 1px solid rgba(105,220,255,0.28);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 0 24px rgba(105,220,255,0.10),
+    0 18px 46px rgba(0,0,0,0.24);
+}
+
+/* Верхние маленькие элементы тоже легче */
+body:not(.theme-cosmic) .tabs,
+body:not(.theme-cosmic) .app-title,
+body:not(.theme-cosmic) .close-btn,
+body:not(.theme-cosmic) .more-btn,
+body:not(.theme-cosmic) .theme-chip,
+body:not(.theme-cosmic) .nav-btn {
+  background: rgba(255,255,255,0.30);
+  border: 1px solid rgba(255,255,255,0.68);
+  backdrop-filter: blur(20px) saturate(155%);
+  -webkit-backdrop-filter: blur(20px) saturate(155%);
+}
+
+body.theme-cosmic .tabs,
+body.theme-cosmic .app-title,
+body.theme-cosmic .close-btn,
+body.theme-cosmic .more-btn,
+body.theme-cosmic .theme-chip,
+body.theme-cosmic .nav-btn {
+  background: rgba(9,13,35,0.36);
+  border: 1px solid rgba(105,220,255,0.24);
+  backdrop-filter: blur(20px) saturate(155%);
+  -webkit-backdrop-filter: blur(20px) saturate(155%);
+}
+
+/* Активные кнопки оставляем читаемыми */
+body:not(.theme-cosmic) .tab.active,
+body:not(.theme-cosmic) .theme-chip.active {
+  background: rgba(255,255,255,0.62);
+  border-color: rgba(255,255,255,0.86);
+}
+
+body.theme-cosmic .tab.active,
+body.theme-cosmic .theme-chip.active {
+  background: linear-gradient(135deg, rgba(194,179,255,0.82), rgba(105,220,255,0.78));
+  border-color: rgba(105,220,255,0.48);
+}
+
+/* Ячейки календаря тоже прозрачнее */
+body:not(.theme-cosmic) .day {
+  background: rgba(255,255,255,0.28);
+  border: 1px solid rgba(255,255,255,0.62);
+  backdrop-filter: blur(14px) saturate(155%);
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
+}
+
+body.theme-cosmic .day {
+  background: rgba(8,12,32,0.36);
+  border: 1px solid rgba(105,220,255,0.18);
+  backdrop-filter: blur(14px) saturate(155%);
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
+}
+
+/* Для тёмной темы немного усилим текст в карточках */
+body.theme-cosmic .mini-card p,
+body.theme-cosmic .wide-card p,
+body.theme-cosmic .main-card p,
+body.theme-cosmic .month-panel p {
+  color: rgba(244,240,255,0.70);
+}
+
+body.theme-cosmic .mini-title {
+  color: rgba(244,240,255,0.62);
 }
