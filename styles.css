@@ -29,6 +29,8 @@ body {
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", "Segoe UI", sans-serif;
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
   background:
     radial-gradient(circle at 20% 0%, rgba(200, 232, 255, 0.9), transparent 32%),
     radial-gradient(circle at 100% 15%, rgba(217, 214, 255, 0.9), transparent 30%),
@@ -39,10 +41,39 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image:
-    radial-gradient(circle, rgba(123,108,255,0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
   pointer-events: none;
+  opacity: 0.85;
+  background-image:
+    radial-gradient(circle, rgba(123,108,255,0.16) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(138,199,232,0.18) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 2px);
+  background-size:
+    92px 92px,
+    150px 150px,
+    220px 220px;
+  background-position:
+    18px 22px,
+    72px 90px,
+    140px 36px;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+
+  background:
+    radial-gradient(circle at 18% 16%, rgba(123,108,255,0.16), transparent 16%),
+    radial-gradient(circle at 82% 22%, rgba(138,199,232,0.2), transparent 18%),
+    radial-gradient(circle at 52% 78%, rgba(123,108,255,0.10), transparent 24%),
+    repeating-radial-gradient(
+      circle at 50% 42%,
+      transparent 0 86px,
+      rgba(123,108,255,0.055) 87px 88px,
+      transparent 89px 168px
+    );
 }
 
 button {
@@ -86,10 +117,10 @@ button {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.78);
   box-shadow: 0 8px 24px rgba(80, 86, 140, 0.08);
-  font-weight: 800;
+  font-weight: 720;
   color: #242631;
-  font-size: 16px;
-  letter-spacing: -0.02em;
+  font-size: 15px;
+  letter-spacing: -0.025em;
 }
 
 .tabs {
@@ -103,13 +134,13 @@ button {
 }
 
 .tab {
-  height: 46px;
+  height: 44px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 17px;
   background: transparent;
   color: #8b8492;
-  font-weight: 760;
-  font-size: 15px;
+  font-weight: 680;
+  font-size: 14px;
   letter-spacing: -0.02em;
 }
 
@@ -128,12 +159,12 @@ button {
 
 .theme-chip {
   border: 0;
-  padding: 11px 17px;
-  border-radius: 17px;
+  padding: 10px 16px;
+  border-radius: 16px;
   background: rgba(255,255,255,0.55);
   color: #9a96a7;
-  font-weight: 760;
-  font-size: 14px;
+  font-weight: 680;
+  font-size: 13px;
   letter-spacing: -0.01em;
 }
 
@@ -152,7 +183,7 @@ button {
 }
 
 .main-card {
-  padding: 34px 22px 30px;
+  padding: 30px 20px 28px;
   border-radius: var(--radius-lg);
   background: var(--card);
   box-shadow: var(--shadow);
@@ -210,10 +241,10 @@ button {
 
 .main-card h1 {
   margin: 0;
-  font-size: 32px;
-  line-height: 1.04;
+  font-size: 28px;
+  line-height: 1.05;
   letter-spacing: -0.055em;
-  font-weight: 900;
+  font-weight: 780;
 }
 
 .main-card p {
@@ -239,30 +270,31 @@ button {
 }
 
 .mini-card {
-  min-height: 174px;
-  padding: 18px 16px;
+  min-height: 156px;
+  padding: 16px 15px;
 }
 
 .wide-card {
   margin-top: 14px;
-  padding: 20px 18px;
+  padding: 18px 16px;
 }
 
 .mini-title {
   display: block;
   margin-bottom: 10px;
   color: #aaa5b2;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 680;
+  letter-spacing: -0.02em;
 }
 
 .mini-card strong {
   display: block;
   margin-bottom: 10px;
   color: var(--text);
-  font-size: 20px;
-  line-height: 1.12;
-  font-weight: 880;
+  font-size: 18px;
+  line-height: 1.16;
+  font-weight: 760;
   letter-spacing: -0.035em;
 }
 
@@ -290,14 +322,17 @@ button {
 .month-panel h2 {
   margin: 0;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 760;
+  letter-spacing: -0.035em;
 }
 
 .month-panel p {
   margin: 4px 0 0;
   text-align: center;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12.5px;
+  font-weight: 520;
 }
 
 .nav-btn {
@@ -334,18 +369,21 @@ button {
 .weekdays span {
   text-align: center;
   color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 11.5px;
+  font-weight: 680;
 }
 
 .day {
   position: relative;
-  min-height: 54px;
-  padding: 7px 4px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255,255,255,0.68);
+  min-height: 50px;
+  padding: 6px 4px;
+  border-radius: 15px;
   text-align: center;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.day:active {
+  transform: scale(0.96);
 }
 
 .day.empty {
@@ -364,14 +402,16 @@ button {
 
 .day-number {
   display: block;
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 12.5px;
+  font-weight: 760;
+  letter-spacing: -0.02em;
 }
 
 .moon {
   display: block;
-  margin-top: 4px;
-  font-size: 18px;
+  margin-top: 3px;
+  font-size: 17px;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.13));
 }
 
 .event-dot {
@@ -414,18 +454,52 @@ body.theme-cosmic {
   --accent-blue: #78d1ff;
   --accent-deep: #d8d0ff;
 
-  background:
-    radial-gradient(circle at 15% 0%, rgba(92, 123, 255, 0.28), transparent 32%),
-    radial-gradient(circle at 100% 20%, rgba(177, 124, 255, 0.22), transparent 30%),
-    linear-gradient(180deg, #0d0e1d 0%, #171832 100%);
+background:
+  radial-gradient(circle at 18% 8%, rgba(87, 120, 255, 0.26), transparent 30%),
+  radial-gradient(circle at 88% 18%, rgba(177, 124, 255, 0.22), transparent 32%),
+  radial-gradient(circle at 50% 100%, rgba(76, 211, 255, 0.12), transparent 36%),
+  linear-gradient(180deg, #080914 0%, #11122a 48%, #171832 100%);
 }
 
 body.theme-cosmic::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.9;
   background-image:
-    radial-gradient(circle, rgba(255,255,255,0.16) 1px, transparent 1px),
-    radial-gradient(circle, rgba(120,209,255,0.12) 1px, transparent 1px);
-  background-size: 32px 32px, 58px 58px;
-  opacity: 0.55;
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(183, 167, 255, 0.75) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(120, 209, 255, 0.65) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.28) 0 1px, transparent 2px);
+  background-size:
+    120px 120px,
+    180px 180px,
+    240px 240px,
+    72px 72px;
+  background-position:
+    12px 20px,
+    70px 90px,
+    140px 40px,
+    22px 18px;
+  animation: starsTwinkle 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes starsTwinkle {
+  0% {
+    opacity: 0.45;
+    filter: brightness(0.9);
+  }
+
+  50% {
+    opacity: 0.95;
+    filter: brightness(1.25);
+  }
+
+  100% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
 }
 
 body.theme-cosmic .app-title,
@@ -479,4 +553,116 @@ body.theme-cosmic .moon-visual {
 
 body.theme-cosmic .footer-link {
   color: #aaa4c5;
+}
+
+body.theme-cosmic::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.32) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 18%, rgba(120, 209, 255, 0.28) 0 1px, transparent 2px),
+    radial-gradient(circle at 62% 68%, rgba(183, 167, 255, 0.28) 0 1px, transparent 2px),
+    radial-gradient(circle at 28% 82%, rgba(255, 255, 255, 0.22) 0 1px, transparent 2px);
+
+  opacity: 0.85;
+  animation: starPulse 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes starPulse {
+  from {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+
+  to {
+    transform: scale(1.015);
+    opacity: 1;
+  }
+}
+
+body.theme-cosmic .day {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,0.10), transparent 30%),
+    linear-gradient(145deg, rgba(255,255,255,0.085), rgba(255,255,255,0.035));
+  border: 1px solid rgba(255,255,255,0.11);
+  color: #f4f0ff;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 10px 22px rgba(0,0,0,0.18);
+  backdrop-filter: blur(14px);
+}
+
+body.theme-cosmic .day:hover {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(183,167,255,0.18), transparent 34%),
+    linear-gradient(145deg, rgba(183,167,255,0.13), rgba(120,209,255,0.06));
+}
+
+body.theme-cosmic .day.today {
+  outline: 1.5px solid rgba(183,167,255,0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 0 0 5px rgba(183,167,255,0.08),
+    0 12px 26px rgba(0,0,0,0.22);
+}
+
+body.theme-cosmic .day.selected {
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,0.18), transparent 30%),
+    linear-gradient(145deg, rgba(183,167,255,0.52), rgba(120,209,255,0.32));
+  border-color: rgba(255,255,255,0.22);
+  color: #ffffff;
+  box-shadow:
+    0 0 0 4px rgba(183,167,255,0.13),
+    0 14px 30px rgba(0,0,0,0.24);
+}
+
+body.theme-cosmic .calendar {
+  background: rgba(20, 21, 43, 0.58);
+  border-color: rgba(255,255,255,0.12);
+}
+
+body.theme-cosmic .month-panel {
+  background: rgba(20, 21, 43, 0.58);
+}
+
+body.theme-cosmic .weekdays span {
+  color: rgba(244,240,255,0.72);
+}
+
+body.theme-cosmic .event-dot {
+  background: #d9c27d;
+  box-shadow: 0 0 0 3px rgba(217,194,125,0.14), 0 0 16px rgba(217,194,125,0.42);
+}
+
+body:not(.theme-cosmic) .day {
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,0.96), transparent 32%),
+    linear-gradient(145deg, rgba(255,255,255,0.78), rgba(246,248,255,0.7));
+  border: 1px solid rgba(214, 220, 238, 0.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 8px 18px rgba(80,86,140,0.055);
+}
+
+body:not(.theme-cosmic) .day.today {
+  outline: 1.5px solid rgba(123,108,255,0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 0 0 5px rgba(123,108,255,0.08),
+    0 8px 18px rgba(80,86,140,0.07);
+}
+
+body:not(.theme-cosmic) .day.selected {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55), transparent 32%),
+    linear-gradient(145deg, rgba(123,108,255,0.25), rgba(138,199,232,0.22));
+  border-color: rgba(123,108,255,0.38);
+  color: #262735;
+  box-shadow:
+    0 0 0 4px rgba(123,108,255,0.10),
+    0 10px 22px rgba(80,86,140,0.10);
 }
