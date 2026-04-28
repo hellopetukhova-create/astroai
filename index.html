@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>My.Astro Moon Calendar</title>
+
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <button class="close-btn">×</button>
+      <div class="app-title">My.Astro Moon</div>
+      <button class="more-btn">•••</button>
+    </header>
+
+    <section class="tabs">
+      <button class="tab active" id="todayTab">Сегодня</button>
+      <button class="tab" id="calendarTab">Календарь</button>
+    </section>
+
+    <section class="theme-switch">
+        <button class="theme-chip" id="softTheme">Dark</button>
+        <button class="theme-chip active" id="moonTheme">Moon</button>
+    </section>
+
+    <section id="todayView">
+      <p class="date-label" id="todayDate">Сегодня</p>
+
+      <section class="main-card">
+        <div class="phase-label" id="todayPhaseLabel">🌙 Фаза Луны</div>
+
+            <div class="moon-visual-wrap">
+                <div class="moon-visual" id="moonVisual">
+                <div class="moon-shadow" id="moonShadow"></div>
+            </div>
+         </div>
+
+        <h1 id="mainTitle">12 лунный день</h1>
+        <p id="mainSubtitle">Луна в Тельце</p>
+        </section>
+
+      <section class="cards-grid">
+        <article class="mini-card">
+          <span class="mini-title">Фаза Луны</span>
+          <strong id="phaseName">Растущая</strong>
+          <p id="phaseAdvice">Подходит для роста, планирования и первых шагов.</p>
+        </article>
+
+        <article class="mini-card">
+          <span class="mini-title">Луна в знаке</span>
+          <strong id="moonSign">Весах</strong>
+          <p>День про баланс, красоту, диалог и мягкие договорённости.</p>
+        </article>
+      </section>
+
+      <section class="wide-card">
+        <span class="mini-title">Важное на небе</span>
+        <p id="skyEvents">Сегодня без резких астрологических акцентов. Хорошо двигаться спокойно и без лишнего давления.</p>
+      </section>
+
+      <section class="wide-card">
+        <span class="mini-title">Совет дня</span>
+        <p id="dayAdvice">Выбери один важный фокус и не перегружай день лишними задачами.</p>
+      </section>
+    </section>
+
+    <section id="calendarView" class="hidden">
+      <section class="month-panel">
+        <button class="nav-btn" id="prevMonth">‹</button>
+        <div>
+          <h2 id="monthTitle">Месяц</h2>
+          <p>Выбери день, чтобы посмотреть детали</p>
+        </div>
+        <button class="nav-btn" id="nextMonth">›</button>
+      </section>
+
+      <section class="calendar">
+        <div class="weekdays">
+          <span>Пн</span>
+          <span>Вт</span>
+          <span>Ср</span>
+          <span>Чт</span>
+          <span>Пт</span>
+          <span>Сб</span>
+          <span>Вс</span>
+        </div>
+
+        <div class="days" id="calendarDays"></div>
+      </section>
+
+      <section class="wide-card" id="dayDetails">
+        <span class="mini-title">Детали дня</span>
+        <p>Нажми на день в календаре, чтобы увидеть фазу Луны и подсказку.</p>
+      </section>
+    </section>
+
+    <footer class="footer-link">
+      О приложении и документах
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
