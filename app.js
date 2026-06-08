@@ -10,7 +10,6 @@ const todayTab = document.getElementById("todayTab");
 const calendarTab = document.getElementById("calendarTab");
 
 const monthTitle = document.getElementById("monthTitle");
-const monthHint = document.getElementById("monthHint");
 const calendarDays = document.getElementById("calendarDays");
 const dayDetails = document.getElementById("dayDetails");
 
@@ -61,8 +60,8 @@ function renderToday() {
 
   document.getElementById("todayDate").textContent = readableDate;
   document.getElementById("todayPhaseLabel").textContent = `${phase.emoji} ${phase.name}`;
-  document.getElementById("mainTitle").textContent = `${moonDay} лунный день`;
-  document.getElementById("mainSubtitle").textContent = `Луна в ${sign}`;
+  document.getElementById("phase-name").textContent = `${moonDay} лунный день`;
+  document.getElementById("moon-description").textContent = `Луна в ${sign}. ${dayComment(today, phase)}`;
   document.getElementById("phaseName").textContent = phase.name;
   document.getElementById("phaseAdvice").textContent = phase.advice;
   document.getElementById("moonSign").textContent = sign;
@@ -74,6 +73,10 @@ function renderToday() {
   document.getElementById("skyEvents").textContent = events.length
     ? events.join(". ")
     : "Сегодня без резких астрологических акцентов. Хорошо двигаться спокойно и без лишнего давления.";
+
+  const illumination = moonIllumination(age);
+  document.getElementById("illumination").textContent = `${illumination}%`;
+  document.getElementById("moon-age").textContent = `${age.toFixed(1)} дн.`;
 }
 
 const monthNames = [
@@ -91,6 +94,13 @@ const importantEvents = {
   "2026-03-20": ["🌸 Равноденствие"],
   "2026-04-01": ["☿ Меркурий разворачивается"],
 };
+
+function moonIllumination(age) {
+  const cycle = 29.53058867;
+  return Math.round(
+    (1 - Math.cos((2 * Math.PI * age) / cycle)) / 2 * 100
+  );
+}
 
 function updateMoonVisual(age) {
   const cycle = 29.53058867;
