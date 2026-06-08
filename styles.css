@@ -215,6 +215,20 @@ button {
   box-shadow:
     inset 0 0 22px rgba(255,255,255,0.18),
     0 0 38px rgba(124,109,255,0.16);
+  position: relative;
+  animation: moonGlow 7s ease-in-out infinite;
+}
+
+@keyframes moonGlow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .moon-visual {
@@ -233,15 +247,6 @@ button {
     inset 12px 10px 20px rgba(255,255,255,0.48),
     0 0 28px rgba(255,255,255,0.30),
     0 18px 45px rgba(124,109,255,0.22);
-}
-
-body.theme-cosmic .moon-visual-wrap {
-  background:
-    radial-gradient(circle at 50% 50%, rgba(100,232,255,0.20), transparent 42%),
-    radial-gradient(circle at 50% 50%, rgba(194,179,255,0.16), transparent 64%);
-  box-shadow:
-    0 0 44px rgba(100,232,255,0.20),
-    0 0 80px rgba(194,179,255,0.12);
 }
 
 body.theme-cosmic .moon-visual {
@@ -1007,11 +1012,20 @@ body.theme-cosmic .day.today {
 
 body.theme-cosmic .moon-visual-wrap {
   background:
-    radial-gradient(circle at 50% 50%, rgba(105, 220, 255, 0.20), transparent 42%),
-    radial-gradient(circle at 50% 50%, rgba(194, 179, 255, 0.16), transparent 64%);
+    radial-gradient(
+      circle,
+      rgba(105,220,255,0.18),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle,
+      rgba(194,179,255,0.14),
+      transparent 65%
+    );
   box-shadow:
-    0 0 42px rgba(105, 220, 255, 0.22),
-    0 0 80px rgba(194, 179, 255, 0.12);
+    0 0 30px rgba(105,220,255,0.22),
+    0 0 60px rgba(105,220,255,0.14),
+    0 0 120px rgba(194,179,255,0.12);
 }
 
 /* === More transparent glass cards === */
@@ -1244,4 +1258,192 @@ body:not(.theme-cosmic) .main-card {
 .month-panel > * {
   position: relative;
   z-index: 1;
+}
+
+/* === FORCE glossy neon glass === */
+
+body.theme-cosmic .main-card,
+body.theme-cosmic .mini-card,
+body.theme-cosmic .wide-card,
+body.theme-cosmic .calendar,
+body.theme-cosmic .month-panel {
+  background: rgba(8, 12, 36, 0.18) !important;
+  border: 1.4px solid rgba(105, 232, 255, 0.72) !important;
+
+  backdrop-filter: blur(30px) saturate(190%) brightness(1.14) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(1.14) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(105, 232, 255, 0.22),
+    0 0 0 1px rgba(194, 179, 255, 0.20),
+    0 0 26px rgba(105, 232, 255, 0.42),
+    0 0 64px rgba(174, 122, 255, 0.20),
+    0 26px 70px rgba(0, 0, 0, 0.36) !important;
+}
+
+body.theme-cosmic .main-card {
+  background:
+    radial-gradient(circle at 76% 22%, rgba(105, 232, 255, 0.26), transparent 36%),
+    radial-gradient(circle at 18% 82%, rgba(174, 122, 255, 0.24), transparent 34%),
+    rgba(8, 12, 36, 0.14) !important;
+
+  border-color: rgba(105, 232, 255, 0.86) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(105, 232, 255, 0.28),
+    0 0 0 1px rgba(194, 179, 255, 0.24),
+    0 0 34px rgba(105, 232, 255, 0.52),
+    0 0 88px rgba(174, 122, 255, 0.28),
+    0 30px 80px rgba(0, 0, 0, 0.40) !important;
+}
+
+body:not(.theme-cosmic) .main-card,
+body:not(.theme-cosmic) .mini-card,
+body:not(.theme-cosmic) .wide-card,
+body:not(.theme-cosmic) .calendar,
+body:not(.theme-cosmic) .month-panel {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border: 1.4px solid rgba(255, 255, 255, 0.86) !important;
+
+  backdrop-filter: blur(30px) saturate(190%) brightness(1.08) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(1.08) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    inset 0 -1px 0 rgba(116, 220, 255, 0.22),
+    0 0 0 1px rgba(174, 122, 255, 0.12),
+    0 0 28px rgba(116, 220, 255, 0.24),
+    0 24px 64px rgba(70, 82, 130, 0.14) !important;
+}
+
+/* glossy shine */
+.main-card,
+.mini-card,
+.wide-card,
+.calendar,
+.month-panel {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.main-card::before,
+.mini-card::before,
+.wide-card::before,
+.calendar::before,
+.month-panel::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.12) 24%,
+      rgba(255, 255, 255, 0.00) 52%,
+      rgba(105, 232, 255, 0.12) 100%
+    ) !important;
+
+  opacity: 0.72 !important;
+  mix-blend-mode: screen !important;
+}
+
+.main-card::after,
+.mini-card::after,
+.wide-card::after,
+.calendar::after,
+.month-panel::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -45% !important;
+  left: -65% !important;
+  width: 56% !important;
+  height: 190% !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.34),
+    transparent
+  ) !important;
+
+  transform: rotate(18deg) !important;
+  opacity: 0.42 !important;
+  mix-blend-mode: screen !important;
+}
+
+/* content above shine */
+.main-card > *,
+.mini-card > *,
+.wide-card > *,
+.calendar > *,
+.month-panel > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.moon-visual-wrap::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbitRotate 32s linear infinite;
+}
+
+.moon-visual-wrap::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7de7ff;
+  top: 0;
+  left: 50%;
+  margin-left: -3px;
+  box-shadow:
+    0 0 12px #7de7ff,
+    0 0 24px #7de7ff;
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.moon-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 18px 0;
+}
+.moon-stat {
+  text-align: center;
+}
+.moon-stat span {
+  display: block;
+  font-size: 11px;
+  opacity: .65;
+}
+.moon-stat strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 700;
 }
