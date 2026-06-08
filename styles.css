@@ -1,827 +1,156 @@
+/* ==================================================
+   MY.ASTRO MOON
+   PART 1
+   Base / Background / Glass UI / Main Layout
+   ================================================== */
+
 :root {
-  --bg: #f8fbff;
-  --bg-2: #eef4ff;
+  --bg: #f7fbff;
+  --bg2: #eef5ff;
 
-  --card: rgba(255, 255, 255, 0.54);
-  --card-strong: rgba(255, 255, 255, 0.68);
+  --card: rgba(255,255,255,.18);
+  --card-strong: rgba(255,255,255,.24);
 
-  --text: #242635;
-  --muted: #7f7d8f;
+  --line: rgba(255,255,255,.42);
 
-  --line: rgba(255, 255, 255, 0.72);
+  --text: #232536;
+  --muted: #7f8498;
 
-  --accent: #7c6dff;
-  --accent-soft: rgba(124, 109, 255, 0.14);
-  --accent-blue: #72d6ff;
-  --accent-deep: #4a438f;
+  --accent: #7b6cff;
+  --accent2: #73ddff;
 
-  --shadow: 0 22px 60px rgba(87, 92, 150, 0.13);
   --radius-lg: 34px;
   --radius-md: 24px;
+
+  --shadow:
+    0 20px 50px rgba(78,92,140,.12);
+
+  --glass-blur: blur(26px);
 }
 
-* {
+/* ==================================================
+   RESET
+   ================================================== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", "Segoe UI", sans-serif;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
+
   color: var(--text);
+
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
-  background:
-    radial-gradient(circle at 18% 12%, rgba(255, 237, 220, 0.95), transparent 28%),
-    radial-gradient(circle at 80% 18%, rgba(197, 232, 255, 0.86), transparent 28%),
-    radial-gradient(circle at 50% 75%, rgba(220, 214, 255, 0.62), transparent 32%),
-    linear-gradient(135deg, #fff7ef 0%, #f7fbff 44%, #eef4ff 100%);
-}
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.85;
-  background-image:
-    radial-gradient(circle, rgba(123,108,255,0.16) 0 1px, transparent 1.8px),
-    radial-gradient(circle, rgba(138,199,232,0.18) 0 1px, transparent 1.7px),
-    radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 2px);
-  background-size:
-    92px 92px,
-    150px 150px,
-    220px 220px;
-  background-position:
-    18px 22px,
-    72px 90px,
-    140px 36px;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.42;
+  overflow-x: hidden;
 
   background:
-    radial-gradient(circle at 18% 16%, rgba(255,255,255,0.9), transparent 10%),
-    radial-gradient(circle at 82% 22%, rgba(114,214,255,0.22), transparent 18%),
-    radial-gradient(circle at 52% 78%, rgba(124,109,255,0.12), transparent 24%),
-    repeating-radial-gradient(
-      circle at 52% 42%,
-      transparent 0 92px,
-      rgba(124,109,255,0.055) 93px 94px,
-      transparent 95px 178px
-    );
+    linear-gradient(
+      rgba(255,255,255,.18),
+      rgba(255,255,255,.18)
+    ),
+    url("https://hellopetukhova-create.github.io/astroai/assets/bg-glass.png")
+    center center / cover fixed no-repeat;
 }
 
-button {
-  font-family: inherit;
-}
-
-.app {
-  width: min(100%, 470px);
-  margin: 0 auto;
-  padding: 18px 14px 30px;
-}
-
-.topbar {
-  display: grid;
-  grid-template-columns: 54px 1fr 54px;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.close-btn,
-.more-btn {
-  height: 42px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(235, 238, 247, 0.9);
-  color: #8b8b99;
-  font-size: 28px;
-  font-weight: 500;
-}
-
-.more-btn {
-  font-size: 18px;
-  letter-spacing: 2px;
-}
-
-.app-title {
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 8px 24px rgba(80, 86, 140, 0.08);
-  font-weight: 720;
-  color: #242631;
-  font-size: 15px;
-  letter-spacing: -0.025em;
-}
-
-.tabs {
-  width: 260px;
-  margin: 0 auto;
-  padding: 5px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 22px;
-  background: rgba(235, 238, 247, 0.75);
-}
-
-.tab {
-  height: 44px;
-  border: 0;
-  border-radius: 17px;
-  background: transparent;
-  color: #8b8492;
-  font-weight: 680;
-  font-size: 14px;
-  letter-spacing: -0.02em;
-}
-
-.tab.active {
-  background: white;
-  color: #282932;
-  box-shadow: 0 8px 20px rgba(80, 86, 140, 0.11);
-}
-
-.theme-switch {
-  margin: 18px auto 24px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.theme-chip {
-  border: 0;
-  padding: 10px 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.55);
-  color: #9a96a7;
-  font-weight: 680;
-  font-size: 13px;
-  letter-spacing: -0.01em;
-}
-
-.theme-chip.active {
-  background: linear-gradient(135deg, #7b6cff, #7cbfe6);
-  color: white;
-  box-shadow: 0 12px 26px rgba(123,108,255,0.22);
-}
-
-.date-label {
-  text-align: center;
-  margin: 0 0 14px;
-  color: #aaa7b4;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.main-card {
-  padding: 30px 20px 28px;
-  border-radius: var(--radius-lg);
-  background: var(--card);
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,0.74);
-  text-align: center;
-  backdrop-filter: blur(18px);
-}
-
-.phase-label {
-  color: var(--accent);
-  font-weight: 850;
-  font-size: 15px;
-  margin-bottom: 18px;
-  letter-spacing: -0.01em;
-}
-
-.moon-visual-wrap {
-  width: 176px;
-  height: 176px;
-  margin: 0 auto 24px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.30), transparent 36%),
-    radial-gradient(circle at 50% 50%, rgba(124, 109, 255, 0.15), transparent 58%),
-    radial-gradient(circle at 50% 50%, rgba(114, 214, 255, 0.16), transparent 72%);
-  box-shadow:
-    inset 0 0 22px rgba(255,255,255,0.18),
-    0 0 38px rgba(124,109,255,0.16);
-  position: relative;
-  animation: moonGlow 7s ease-in-out infinite;
-}
-
-@keyframes moonGlow {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.025);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.moon-visual {
-  position: relative;
-  width: 122px;
-  height: 122px;
-  overflow: hidden;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0 5px, transparent 7px),
-    radial-gradient(circle at 64% 36%, rgba(180, 180, 190, 0.32) 0 8px, transparent 10px),
-    radial-gradient(circle at 46% 66%, rgba(150, 150, 170, 0.24) 0 7px, transparent 9px),
-    radial-gradient(circle at 42% 42%, #f9fbff 0%, #cfd7e9 45%, #8c98b8 100%);
-  box-shadow:
-    inset -16px -18px 26px rgba(37, 40, 65, 0.28),
-    inset 12px 10px 20px rgba(255,255,255,0.48),
-    0 0 28px rgba(255,255,255,0.30),
-    0 18px 45px rgba(124,109,255,0.22);
-}
-
-body.theme-cosmic .moon-visual {
-  box-shadow:
-    inset -16px -18px 28px rgba(7,8,23,0.45),
-    inset 12px 10px 20px rgba(255,255,255,0.28),
-    0 0 38px rgba(100,232,255,0.22),
-    0 18px 48px rgba(0,0,0,0.34);
-}
-
-.moon-shadow {
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  background: #eef2fb;
-  transform: translateX(-50%);
-  box-shadow: 0 0 22px rgba(238, 242, 251, 0.8);
-  transition: transform 0.35s ease, background 0.35s ease;
-}
-
-.main-card h1 {
-  margin: 0;
-  font-size: 28px;
-  line-height: 1.05;
-  letter-spacing: -0.055em;
-  font-weight: 780;
-}
-
-.main-card p {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 15px;
-  font-weight: 650;
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 18px;
-}
-
-.mini-card,
-.wide-card {
-  background: var(--card-strong);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  box-shadow: 0 10px 24px rgba(80, 86, 140, 0.06);
-}
-
-.mini-card {
-  min-height: 156px;
-  padding: 16px 15px;
-}
-
-.wide-card {
-  margin-top: 14px;
-  padding: 18px 16px;
-}
-
-.mini-title {
-  display: block;
-  margin-bottom: 10px;
-  color: #aaa5b2;
-  font-size: 14px;
-  font-weight: 680;
-  letter-spacing: -0.02em;
-}
-
-.mini-card strong {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--text);
-  font-size: 18px;
-  line-height: 1.16;
-  font-weight: 760;
-  letter-spacing: -0.035em;
-}
-
-.mini-card p,
-.wide-card p {
-  margin: 0;
-  color: #7e7989;
-  font-size: 14.5px;
-  line-height: 1.45;
-  font-weight: 520;
-}
-
-.month-panel {
-  margin-top: 6px;
-  padding: 12px;
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
-  align-items: center;
-  gap: 8px;
-  border-radius: 24px;
-  background: var(--card);
-  border: 1px solid var(--line);
-}
-
-.month-panel h2 {
-  margin: 0;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 760;
-  letter-spacing: -0.035em;
-}
-
-.month-panel p {
-  margin: 4px 0 0;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12.5px;
-  font-weight: 520;
-}
-
-.nav-btn {
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(214, 220, 238, 0.88);
-  border-radius: 15px;
-  background:
-    radial-gradient(circle at 28% 20%, rgba(255,255,255,0.96), transparent 32%),
-    linear-gradient(145deg, rgba(255,255,255,0.78), rgba(246,248,255,0.7));
-  color: var(--accent-deep);
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 650;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.92),
-    0 8px 18px rgba(80,86,140,0.055);
-  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-}
-
-.nav-btn:active {
-  transform: scale(0.96);
-}
-
-.calendar {
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: var(--radius-lg);
-  background: var(--card);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-}
-
-.weekdays,
-.days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 7px;
-}
-
-.weekdays {
-  margin-bottom: 8px;
-}
-
-.weekdays span {
-  text-align: center;
-  color: var(--muted);
-  font-size: 11.5px;
-  font-weight: 680;
-}
-
-.day {
-  position: relative;
-  min-height: 50px;
-  padding: 6px 4px;
-  border-radius: 15px;
-  text-align: center;
-  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-}
-
-.day:active {
-  transform: scale(0.96);
-}
-
-.day.empty {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.day.today {
-  outline: 2px solid rgba(123, 108, 255, 0.42);
-}
-
-.day.selected {
-  background: linear-gradient(145deg, #7b6cff, #8ac7e8);
-  color: white;
-}
-
-.day-number {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 760;
-  letter-spacing: -0.02em;
-}
-
-.moon {
-  display: block;
-  margin-top: 3px;
-  font-size: 17px;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.13));
-}
-
-.event-dot {
-  position: absolute;
-  right: 7px;
-  top: 7px;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: #f0d58a;
-  box-shadow: 0 0 0 3px rgba(240,213,138,0.22);
-}
-
-.footer-link {
-  margin-top: 24px;
-  text-align: center;
-  color: #b3a8bd;
-  font-weight: 800;
-  font-size: 15px;
-}
-
-.hidden {
-  display: none;
-}
+/* ==================================================
+   COSMIC THEME
+   ================================================== */
 
 body.theme-cosmic {
-  --bg: #070817;
-  --bg-2: #11142b;
+  --card: rgba(12,16,42,.22);
+  --card-strong: rgba(12,16,42,.28);
 
-  --card: rgba(20, 23, 48, 0.52);
-  --card-strong: rgba(25, 29, 58, 0.64);
+  --line: rgba(106,227,255,.24);
 
-  --text: #f7f4ff;
-  --muted: #a9a6c5;
-
-  --line: rgba(118, 231, 255, 0.22);
-
-  --accent: #c2b3ff;
-  --accent-soft: rgba(194, 179, 255, 0.16);
-  --accent-blue: #64e8ff;
-  --accent-deep: #e7e0ff;
+  --text: #f5f3ff;
+  --muted: rgba(245,243,255,.70);
 
   background:
-    radial-gradient(circle at 72% 18%, rgba(0, 229, 255, 0.16), transparent 22%),
-    radial-gradient(circle at 82% 48%, rgba(179, 83, 255, 0.20), transparent 28%),
-    radial-gradient(circle at 42% 72%, rgba(73, 211, 255, 0.10), transparent 30%),
-    linear-gradient(135deg, #060714 0%, #10142d 44%, #24123c 100%);
+    linear-gradient(
+      rgba(4,6,18,.22),
+      rgba(4,6,18,.22)
+    ),
+    url("https://hellopetukhova-create.github.io/astroai/assets/bg-mystic.png")
+    center center / cover fixed no-repeat;
 }
 
-body.theme-cosmic::before {
-  content: "";
+/* ==================================================
+   STARS
+   ================================================== */
+
+.stars {
   position: fixed;
   inset: 0;
+
   pointer-events: none;
-  opacity: 0.9;
+  z-index: -1;
+
+  opacity: .85;
+
   background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.7px),
-    radial-gradient(circle, rgba(183, 167, 255, 0.75) 0 1px, transparent 1.8px),
-    radial-gradient(circle, rgba(120, 209, 255, 0.65) 0 1px, transparent 1.6px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.28) 0 1px, transparent 2px);
+    radial-gradient(circle,#fff 1px,transparent 1px),
+    radial-gradient(circle,#7de7ff 1px,transparent 1px),
+    radial-gradient(circle,#d9bfff 1px,transparent 1px);
+
   background-size:
-    120px 120px,
     180px 180px,
-    240px 240px,
-    72px 72px;
-  background-position:
-    12px 20px,
-    70px 90px,
-    140px 40px,
-    22px 18px;
-  animation: starsTwinkle 5.5s ease-in-out infinite alternate;
+    260px 260px,
+    340px 340px;
+
+  animation: starsMove 80s linear infinite;
 }
 
-@keyframes starsTwinkle {
-  0% {
-    opacity: 0.45;
-    filter: brightness(0.9);
-  }
-
-  50% {
-    opacity: 0.95;
-    filter: brightness(1.25);
-  }
-
-  100% {
-    opacity: 0.6;
-    filter: brightness(1);
-  }
-}
-
-body.theme-cosmic .app-title,
-body.theme-cosmic .tab.active,
-body.theme-cosmic .close-btn,
-body.theme-cosmic .more-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f7f2ff;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-}
-
-body.theme-cosmic .tabs {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-body.theme-cosmic .tab {
-  color: #aaa4c5;
-}
-
-body.theme-cosmic .theme-chip {
-  background: rgba(255, 255, 255, 0.08);
-  color: #aaa4c5;
-}
-
-body.theme-cosmic .theme-chip.active {
-  background: linear-gradient(135deg, #b7a7ff, #78d1ff);
-  color: #171832;
-}
-
-body.theme-cosmic .main-card,
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card,
-body.theme-cosmic .calendar,
-body.theme-cosmic .month-panel {
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
-}
-
-body.theme-cosmic .moon-shadow {
-  background: #171832;
-  box-shadow: 0 0 22px rgba(23, 24, 50, 0.86);
-}
-
-body.theme-cosmic .moon-visual {
-  box-shadow:
-    inset -14px -16px 26px rgba(92, 66, 30, 0.22),
-    inset 10px 10px 20px rgba(255, 255, 255, 0.28),
-    0 0 38px rgba(183, 167, 255, 0.26),
-    0 18px 44px rgba(0, 0, 0, 0.24);
-}
-
-body.theme-cosmic .footer-link {
-  color: #aaa4c5;
-}
-
-body.theme-cosmic::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.32) 0 1px, transparent 2px),
-    radial-gradient(circle at 78% 18%, rgba(120, 209, 255, 0.28) 0 1px, transparent 2px),
-    radial-gradient(circle at 62% 68%, rgba(183, 167, 255, 0.28) 0 1px, transparent 2px),
-    radial-gradient(circle at 28% 82%, rgba(255, 255, 255, 0.22) 0 1px, transparent 2px);
-
-  opacity: 0.85;
-  animation: starPulse 3.8s ease-in-out infinite alternate;
-}
-
-@keyframes starPulse {
+@keyframes starsMove {
   from {
-    transform: scale(1);
-    opacity: 0.45;
+    transform: translateY(0);
   }
 
   to {
-    transform: scale(1.015);
-    opacity: 1;
+    transform: translateY(-120px);
   }
 }
 
-body.theme-cosmic .day {
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.022));
-  border: 1px solid rgba(100,232,255,0.14);
-  color: #f7f4ff;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    0 0 18px rgba(100,232,255,0.045),
-    0 10px 24px rgba(0,0,0,0.22);
+body:not(.theme-cosmic) .stars {
+  opacity: .25;
 }
 
-body.theme-cosmic .day.selected {
-  background:
-    linear-gradient(145deg, rgba(194,179,255,0.30), rgba(100,232,255,0.18));
-  border-color: rgba(100,232,255,0.34);
-  box-shadow:
-    0 0 0 4px rgba(100,232,255,0.10),
-    0 0 26px rgba(100,232,255,0.16),
-    0 16px 34px rgba(0,0,0,0.24);
+/* ==================================================
+   APP
+   ================================================== */
+
+.app {
+  width: min(100%, 470px);
+
+  margin: 0 auto;
+
+  padding:
+    max(18px, env(safe-area-inset-top))
+    14px
+    40px;
 }
 
-body.theme-cosmic .day:hover {
-  background:
-    radial-gradient(circle at 30% 22%, rgba(183,167,255,0.18), transparent 34%),
-    linear-gradient(145deg, rgba(183,167,255,0.13), rgba(120,209,255,0.06));
-}
+/* ==================================================
+   GLASS SYSTEM
+   ================================================== */
 
-body.theme-cosmic .day.today {
-  outline: 1.5px solid rgba(183,167,255,0.65);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    0 0 0 5px rgba(183,167,255,0.08),
-    0 12px 26px rgba(0,0,0,0.22);
-}
-
-body.theme-cosmic .calendar {
-  background: rgba(20, 21, 43, 0.58);
-  border-color: rgba(255,255,255,0.12);
-}
-
-body.theme-cosmic .month-panel {
-  background: rgba(20, 21, 43, 0.58);
-}
-
-body.theme-cosmic .weekdays span {
-  color: rgba(244,240,255,0.72);
-}
-
-body.theme-cosmic .event-dot {
-  background: #d9c27d;
-  box-shadow: 0 0 0 3px rgba(217,194,125,0.14), 0 0 16px rgba(217,194,125,0.42);
-}
-
-body:not(.theme-cosmic) .day {
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.68), rgba(255,255,255,0.32));
-  border: 1px solid rgba(255,255,255,0.72);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.86),
-    0 8px 18px rgba(90,102,160,0.08);
-}
-
-body:not(.theme-cosmic) .day.today {
-  outline: 1.5px solid rgba(123,108,255,0.45);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.92),
-    0 0 0 5px rgba(123,108,255,0.08),
-    0 8px 18px rgba(80,86,140,0.07);
-}
-
-body:not(.theme-cosmic) .day.selected {
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55), transparent 32%),
-    linear-gradient(145deg, rgba(123,108,255,0.25), rgba(138,199,232,0.22));
-  border-color: rgba(123,108,255,0.38);
-  color: #262735;
-  box-shadow:
-    0 0 0 4px rgba(123,108,255,0.10),
-    0 10px 22px rgba(80,86,140,0.10);
-}
-
-body.theme-cosmic .nav-btn {
-  background:
-    radial-gradient(circle at 30% 22%, rgba(255,255,255,0.10), transparent 30%),
-    linear-gradient(145deg, rgba(255,255,255,0.085), rgba(255,255,255,0.035));
-  border: 1px solid rgba(255,255,255,0.11);
-  color: #f4f0ff;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    0 10px 22px rgba(0,0,0,0.18);
-  backdrop-filter: blur(14px);
-}
-
-body.theme-cosmic .nav-btn:hover {
-  background:
-    radial-gradient(circle at 30% 22%, rgba(183,167,255,0.18), transparent 34%),
-    linear-gradient(145deg, rgba(183,167,255,0.13), rgba(120,209,255,0.06));
-}
-
-body:not(.theme-cosmic) .main-card,
-body:not(.theme-cosmic) .mini-card,
-body:not(.theme-cosmic) .wide-card,
-body:not(.theme-cosmic) .calendar,
-body:not(.theme-cosmic) .month-panel,
-body:not(.theme-cosmic) .tabs,
-body:not(.theme-cosmic) .app-title,
-body:not(.theme-cosmic) .close-btn,
-body:not(.theme-cosmic) .more-btn {
-  backdrop-filter: blur(24px) saturate(135%);
-  -webkit-backdrop-filter: blur(24px) saturate(135%);
-  border: 1px solid rgba(255, 255, 255, 0.74);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.76),
-    0 22px 55px rgba(90, 102, 160, 0.12);
-}
-
-body:not(.theme-cosmic) .main-card {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.66), rgba(255,255,255,0.28)),
-    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.62), transparent 28%),
-    radial-gradient(circle at 78% 28%, rgba(114,214,255,0.18), transparent 30%);
-}
-
-body:not(.theme-cosmic) .mini-card,
-body:not(.theme-cosmic) .wide-card {
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.68), rgba(255,255,255,0.36));
-}
-
-body.theme-cosmic .main-card,
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card,
-body.theme-cosmic .calendar,
-body.theme-cosmic .month-panel,
-body.theme-cosmic .tabs,
-body.theme-cosmic .app-title,
-body.theme-cosmic .close-btn,
-body.theme-cosmic .more-btn {
-  backdrop-filter: blur(24px) saturate(145%);
-  -webkit-backdrop-filter: blur(24px) saturate(145%);
-  border: 1px solid rgba(100, 232, 255, 0.22);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    0 0 0 1px rgba(194,179,255,0.06),
-    0 0 28px rgba(100,232,255,0.10),
-    0 24px 60px rgba(0,0,0,0.32);
-}
-
-body.theme-cosmic .main-card {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025)),
-    radial-gradient(circle at 72% 30%, rgba(100,232,255,0.18), transparent 28%),
-    radial-gradient(circle at 82% 72%, rgba(187,91,255,0.18), transparent 34%);
-}
-
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card {
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
-}
-
-body.theme-cosmic .tab.active,
-body.theme-cosmic .theme-chip.active {
-  background:
-    linear-gradient(135deg, rgba(194,179,255,0.95), rgba(100,232,255,0.86));
-  color: #11142b;
-  box-shadow:
-    0 0 22px rgba(100,232,255,0.28),
-    0 12px 28px rgba(0,0,0,0.22);
-}
-
-/* === My.Astro Moon: Celestial Glass / Mystic Night final style === */
-
-body {
-  font-size: 15px;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
-}
-
-body:not(.theme-cosmic) {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
-    url("https://hellopetukhova-create.github.io/astroai/assets/bg-glass.png") center / cover fixed no-repeat;
-}
-
-body.theme-cosmic {
-  background:
-    linear-gradient(rgba(4, 6, 18, 0.18), rgba(4, 6, 18, 0.18)),
-    url("https://hellopetukhova-create.github.io/astroai/assets/bg-mystic.png") center / cover fixed no-repeat;
-}
-
-/* убираем старые точечные слои, фон теперь картинкой */
-body::before,
-body::after,
-body.theme-cosmic::before,
-body.theme-cosmic::after {
-  display: none;
-}
-
-/* общий glass */
 .main-card,
 .mini-card,
 .wide-card,
@@ -831,619 +160,912 @@ body.theme-cosmic::after {
 .app-title,
 .close-btn,
 .more-btn,
-.nav-btn,
-.theme-chip {
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-}
-
-/* light glass */
-body:not(.theme-cosmic) .main-card,
-body:not(.theme-cosmic) .mini-card,
-body:not(.theme-cosmic) .wide-card,
-body:not(.theme-cosmic) .calendar,
-body:not(.theme-cosmic) .month-panel,
-body:not(.theme-cosmic) .tabs,
-body:not(.theme-cosmic) .app-title,
-body:not(.theme-cosmic) .close-btn,
-body:not(.theme-cosmic) .more-btn,
-body:not(.theme-cosmic) .nav-btn,
-body:not(.theme-cosmic) .theme-chip {
-  background: rgba(255, 255, 255, 0.32);
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    0 18px 44px rgba(70, 82, 130, 0.12);
-}
-
-body:not(.theme-cosmic) .tab.active,
-body:not(.theme-cosmic) .theme-chip.active {
-  background: rgba(255, 255, 255, 0.72);
-  color: #222337;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.78),
-    0 12px 26px rgba(70, 82, 130, 0.12);
-}
-
-/* dark mystic glass */
-body.theme-cosmic .main-card,
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card,
-body.theme-cosmic .calendar,
-body.theme-cosmic .month-panel,
-body.theme-cosmic .tabs,
-body.theme-cosmic .app-title,
-body.theme-cosmic .close-btn,
-body.theme-cosmic .more-btn,
-body.theme-cosmic .nav-btn,
-body.theme-cosmic .theme-chip {
-  background: rgba(8, 12, 32, 0.44);
-  border: 1px solid rgba(93, 226, 255, 0.22);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 24px rgba(93, 226, 255, 0.10),
-    0 18px 46px rgba(0, 0, 0, 0.28);
-}
-
-body.theme-cosmic .tab.active,
-body.theme-cosmic .theme-chip.active {
-  background: linear-gradient(135deg, rgba(194, 179, 255, 0.96), rgba(105, 220, 255, 0.9));
-  color: #0c1024;
-  box-shadow:
-    0 0 24px rgba(105, 220, 255, 0.28),
-    0 14px 30px rgba(0, 0, 0, 0.24);
-}
-
-/* calendar cells */
-.day {
-  min-height: 49px;
-  border-radius: 15px;
-  font-size: 13px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-}
-
-.day:active {
-  transform: scale(0.96);
-}
-
-body:not(.theme-cosmic) .day {
-  background: rgba(255, 255, 255, 0.34);
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.66),
-    0 8px 18px rgba(70, 82, 130, 0.08);
-}
-
-body.theme-cosmic .day {
-  background: rgba(7, 12, 32, 0.48);
-  border: 1px solid rgba(93, 226, 255, 0.14);
-  color: #f6f2ff;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 0 18px rgba(93, 226, 255, 0.05),
-    0 10px 22px rgba(0, 0, 0, 0.22);
-}
-
-body:not(.theme-cosmic) .day.selected,
-body:not(.theme-cosmic) .day.today {
-  border-color: rgba(129, 221, 255, 0.95);
-  box-shadow:
-    0 0 0 3px rgba(160, 130, 255, 0.13),
-    0 0 22px rgba(107, 224, 255, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-}
-
-body.theme-cosmic .day.selected,
-body.theme-cosmic .day.today {
-  border-color: rgba(119, 231, 255, 0.5);
-  box-shadow:
-    0 0 0 3px rgba(119, 231, 255, 0.10),
-    0 0 24px rgba(119, 231, 255, 0.20),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-/* text refinement */
-.app-title {
-  font-size: 15px;
-  font-weight: 720;
-}
-
-.tab {
-  font-size: 14px;
-  font-weight: 680;
-}
-
-.theme-chip {
-  font-size: 13px;
-  font-weight: 680;
-}
-
-.month-panel h2 {
-  font-size: 18px;
-  font-weight: 740;
-}
-
-.month-panel p,
-.main-card p,
-.mini-card p,
-.wide-card p {
-  font-size: 13.5px;
-  line-height: 1.45;
-}
-
-.main-card h1 {
-  font-size: 27px;
-  font-weight: 780;
-}
-
-.mini-title {
-  font-size: 13.5px;
-  font-weight: 680;
-}
-
-.mini-card strong {
-  font-size: 18px;
-  font-weight: 740;
-}
-
-.day-number {
-  font-size: 12.5px;
-  font-weight: 740;
-}
-
-.moon {
-  font-size: 17px;
-  filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.22));
-}
-
-/* moon orb */
-.moon-visual-wrap {
-  width: 176px;
-  height: 176px;
-  margin: 0 auto 22px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.28), transparent 36%),
-    radial-gradient(circle at 50% 50%, rgba(124, 109, 255, 0.16), transparent 58%),
-    radial-gradient(circle at 50% 50%, rgba(114, 214, 255, 0.18), transparent 72%);
-  box-shadow:
-    inset 0 0 22px rgba(255, 255, 255, 0.16),
-    0 0 38px rgba(124, 109, 255, 0.16);
-}
-
-body.theme-cosmic .moon-visual-wrap {
-  background:
-    radial-gradient(
-      circle,
-      rgba(105,220,255,0.18),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle,
-      rgba(194,179,255,0.14),
-      transparent 65%
-    );
-  box-shadow:
-    0 0 30px rgba(105,220,255,0.22),
-    0 0 60px rgba(105,220,255,0.14),
-    0 0 120px rgba(194,179,255,0.12);
-}
-
-/* === More transparent glass cards === */
-
-body:not(.theme-cosmic) .main-card,
-body:not(.theme-cosmic) .mini-card,
-body:not(.theme-cosmic) .wide-card,
-body:not(.theme-cosmic) .calendar,
-body:not(.theme-cosmic) .month-panel {
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.34), rgba(255,255,255,0.14));
-  border: 1px solid rgba(255,255,255,0.72);
-  backdrop-filter: blur(22px) saturate(165%);
-  -webkit-backdrop-filter: blur(22px) saturate(165%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.68),
-    0 18px 46px rgba(70,82,130,0.10);
-}
-
-body.theme-cosmic .main-card,
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card,
-body.theme-cosmic .calendar,
-body.theme-cosmic .month-panel {
-  background:
-    linear-gradient(145deg, rgba(79, 82, 97, 0.2), rgba(12,16,42,0.22));
-  border: 1px solid rgba(105,220,255,0.28);
-  backdrop-filter: blur(22px) saturate(165%);
-  -webkit-backdrop-filter: blur(22px) saturate(165%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    0 0 24px rgba(105,220,255,0.10),
-    0 18px 46px rgba(0,0,0,0.24);
-}
-
-/* Верхние маленькие элементы тоже легче */
-body:not(.theme-cosmic) .tabs,
-body:not(.theme-cosmic) .app-title,
-body:not(.theme-cosmic) .close-btn,
-body:not(.theme-cosmic) .more-btn,
-body:not(.theme-cosmic) .theme-chip,
-body:not(.theme-cosmic) .nav-btn {
-  background: rgba(255,255,255,0.30);
-  border: 1px solid rgba(255,255,255,0.68);
-  backdrop-filter: blur(20px) saturate(155%);
-  -webkit-backdrop-filter: blur(20px) saturate(155%);
-}
-
-body.theme-cosmic .tabs,
-body.theme-cosmic .app-title,
-body.theme-cosmic .close-btn,
-body.theme-cosmic .more-btn,
-body.theme-cosmic .theme-chip,
-body.theme-cosmic .nav-btn {
-  background: rgba(9,13,35,0.36);
-  border: 1px solid rgba(105,220,255,0.24);
-  backdrop-filter: blur(20px) saturate(155%);
-  -webkit-backdrop-filter: blur(20px) saturate(155%);
-}
-
-/* Активные кнопки оставляем читаемыми */
-body:not(.theme-cosmic) .tab.active,
-body:not(.theme-cosmic) .theme-chip.active {
-  background: rgba(255,255,255,0.62);
-  border-color: rgba(255,255,255,0.86);
-}
-
-body.theme-cosmic .tab.active,
-body.theme-cosmic .theme-chip.active {
-  background: linear-gradient(135deg, rgba(194,179,255,0.82), rgba(105,220,255,0.78));
-  border-color: rgba(105,220,255,0.48);
-}
-
-/* Ячейки календаря тоже прозрачнее */
-body:not(.theme-cosmic) .day {
-  background: rgba(255,255,255,0.28);
-  border: 1px solid rgba(255,255,255,0.62);
-  backdrop-filter: blur(14px) saturate(155%);
-  -webkit-backdrop-filter: blur(14px) saturate(155%);
-}
-
-body.theme-cosmic .day {
-  background: rgba(8,12,32,0.36);
-  border: 1px solid rgba(105,220,255,0.18);
-  backdrop-filter: blur(14px) saturate(155%);
-  -webkit-backdrop-filter: blur(14px) saturate(155%);
-}
-
-/* Для тёмной темы немного усилим текст в карточках */
-body.theme-cosmic .mini-card p,
-body.theme-cosmic .wide-card p,
-body.theme-cosmic .main-card p,
-body.theme-cosmic .month-panel p {
-  color: rgba(244,240,255,0.70);
-}
-
-body.theme-cosmic .mini-title {
-  color: rgba(244,240,255,0.62);
-}
-
-/* === Glossy neon glass cards === */
-
-.main-card,
-.mini-card,
-.wide-card,
-.calendar,
-.month-panel {
+.theme-chip,
+.nav-btn {
   position: relative;
   overflow: hidden;
+
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
 }
 
-/* глянцевый блик поверх карточек */
 .main-card::before,
 .mini-card::before,
 .wide-card::before,
 .calendar::before,
 .month-panel::before {
   content: "";
+
   position: absolute;
   inset: 0;
+
   pointer-events: none;
+
   border-radius: inherit;
+
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.34) 0%,
-      rgba(255, 255, 255, 0.10) 22%,
-      rgba(255, 255, 255, 0.02) 48%,
-      rgba(255, 255, 255, 0.16) 100%
+      rgba(255,255,255,.28),
+      rgba(255,255,255,.03) 40%,
+      rgba(255,255,255,.12)
     );
-  opacity: 0.72;
+
   mix-blend-mode: screen;
 }
 
-/* тонкая диагональная “стеклянная” полоска */
-.main-card::after,
-.mini-card::after,
-.wide-card::after,
-.calendar::after,
-.month-panel::after {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -70%;
-  width: 55%;
-  height: 180%;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.24),
-    transparent
-  );
-  transform: rotate(18deg);
-  opacity: 0.36;
+/* ==================================================
+   TOP BAR
+   ================================================== */
+
+.topbar {
+  display: grid;
+
+  grid-template-columns:
+    54px
+    1fr
+    54px;
+
+  gap: 10px;
+
+  align-items: center;
+
+  margin-bottom: 18px;
 }
 
-/* Dark / Mystic: прозрачное стекло + neon border */
-body.theme-cosmic .main-card,
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card,
-body.theme-cosmic .calendar,
-body.theme-cosmic .month-panel {
-  background:
-    linear-gradient(145deg, rgba(8, 12, 36, 0.30), rgba(8, 12, 36, 0.12)) !important;
-  border: 1px solid rgba(105, 232, 255, 0.78) !important;
-  backdrop-filter: blur(26px) saturate(185%) brightness(1.08);
-  -webkit-backdrop-filter: blur(26px) saturate(185%) brightness(1.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(105, 232, 255, 0.16),
-    0 0 0 1px rgba(174, 122, 255, 0.14),
-    0 0 24px rgba(105, 232, 255, 0.42),
-    0 0 42px rgba(174, 122, 255, 0.16),
-    0 22px 58px rgba(0, 0, 0, 0.34) !important;
+.close-btn,
+.more-btn {
+  height: 42px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 999px;
+
+  background: var(--card);
+
+  color: var(--muted);
+
+  cursor: pointer;
+
+  box-shadow: var(--shadow);
 }
 
-/* главная карточка чуть ярче */
-body.theme-cosmic .main-card {
-  background:
-    radial-gradient(circle at 72% 22%, rgba(105, 232, 255, 0.20), transparent 34%),
-    radial-gradient(circle at 18% 80%, rgba(174, 122, 255, 0.18), transparent 34%),
-    linear-gradient(145deg, rgba(8, 12, 36, 0.24), rgba(8, 12, 36, 0.10)) !important;
-  border-color: rgba(105, 232, 255, 0.68) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    0 0 0 1px rgba(174, 122, 255, 0.18),
-    0 0 28px rgba(105, 232, 255, 0.34),
-    0 0 62px rgba(174, 122, 255, 0.20),
-    0 26px 66px rgba(0, 0, 0, 0.36) !important;
+.close-btn {
+  font-size: 28px;
 }
 
-/* Light / Glass: глянцевое молочное стекло */
-body:not(.theme-cosmic) .main-card,
-body:not(.theme-cosmic) .mini-card,
-body:not(.theme-cosmic) .wide-card,
-body:not(.theme-cosmic) .calendar,
-body:not(.theme-cosmic) .month-panel {
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.10)) !important;
-  border: 1px solid rgba(255, 255, 255, 0.78) !important;
-  backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
-  -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.78),
-    inset 0 -1px 0 rgba(116, 220, 255, 0.14),
-    0 0 0 1px rgba(174, 122, 255, 0.10),
-    0 0 22px rgba(116, 220, 255, 0.18),
-    0 18px 50px rgba(70, 82, 130, 0.13) !important;
+.more-btn {
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
-body:not(.theme-cosmic) .main-card {
-  background:
-    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.42), transparent 34%),
-    radial-gradient(circle at 82% 28%, rgba(116, 220, 255, 0.22), transparent 34%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08)) !important;
-  border-color: rgba(255, 255, 255, 0.86) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.84),
-    0 0 0 1px rgba(174, 122, 255, 0.12),
-    0 0 28px rgba(116, 220, 255, 0.22),
-    0 24px 58px rgba(70, 82, 130, 0.15) !important;
+.app-title {
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 999px;
+
+  background: var(--card);
+
+  border: 1px solid var(--line);
+
+  box-shadow: var(--shadow);
+
+  font-size: 15px;
+  font-weight: 700;
 }
 
-/* Чтобы контент был поверх бликов */
-.main-card > *,
-.mini-card > *,
-.wide-card > *,
-.calendar > *,
-.month-panel > * {
-  position: relative;
-  z-index: 1;
+/* ==================================================
+   TABS
+   ================================================== */
+
+.tabs {
+  width: 260px;
+
+  margin: 0 auto;
+
+  padding: 5px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  border-radius: 22px;
+
+  background: var(--card);
+
+  border: 1px solid var(--line);
+
+  box-shadow: var(--shadow);
 }
 
-/* === FORCE glossy neon glass === */
+.tab {
+  height: 44px;
 
-body.theme-cosmic .main-card,
-body.theme-cosmic .mini-card,
-body.theme-cosmic .wide-card,
-body.theme-cosmic .calendar,
-body.theme-cosmic .month-panel {
-  background: rgba(8, 12, 36, 0.18) !important;
-  border: 1.4px solid rgba(105, 232, 255, 0.72) !important;
+  border: 0;
 
-  backdrop-filter: blur(30px) saturate(190%) brightness(1.14) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(1.14) !important;
+  border-radius: 16px;
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    inset 0 -1px 0 rgba(105, 232, 255, 0.22),
-    0 0 0 1px rgba(194, 179, 255, 0.20),
-    0 0 26px rgba(105, 232, 255, 0.42),
-    0 0 64px rgba(174, 122, 255, 0.20),
-    0 26px 70px rgba(0, 0, 0, 0.36) !important;
+  background: transparent;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
 }
 
-body.theme-cosmic .main-card {
-  background:
-    radial-gradient(circle at 76% 22%, rgba(105, 232, 255, 0.26), transparent 36%),
-    radial-gradient(circle at 18% 82%, rgba(174, 122, 255, 0.24), transparent 34%),
-    rgba(8, 12, 36, 0.14) !important;
-
-  border-color: rgba(105, 232, 255, 0.86) !important;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(105, 232, 255, 0.28),
-    0 0 0 1px rgba(194, 179, 255, 0.24),
-    0 0 34px rgba(105, 232, 255, 0.52),
-    0 0 88px rgba(174, 122, 255, 0.28),
-    0 30px 80px rgba(0, 0, 0, 0.40) !important;
-}
-
-body:not(.theme-cosmic) .main-card,
-body:not(.theme-cosmic) .mini-card,
-body:not(.theme-cosmic) .wide-card,
-body:not(.theme-cosmic) .calendar,
-body:not(.theme-cosmic) .month-panel {
-  background: rgba(255, 255, 255, 0.16) !important;
-  border: 1.4px solid rgba(255, 255, 255, 0.86) !important;
-
-  backdrop-filter: blur(30px) saturate(190%) brightness(1.08) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(1.08) !important;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.86),
-    inset 0 -1px 0 rgba(116, 220, 255, 0.22),
-    0 0 0 1px rgba(174, 122, 255, 0.12),
-    0 0 28px rgba(116, 220, 255, 0.24),
-    0 24px 64px rgba(70, 82, 130, 0.14) !important;
-}
-
-/* glossy shine */
-.main-card,
-.mini-card,
-.wide-card,
-.calendar,
-.month-panel {
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.main-card::before,
-.mini-card::before,
-.wide-card::before,
-.calendar::before,
-.month-panel::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: inherit !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
+.tab.active {
+  color: var(--text);
 
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.42) 0%,
-      rgba(255, 255, 255, 0.12) 24%,
-      rgba(255, 255, 255, 0.00) 52%,
-      rgba(105, 232, 255, 0.12) 100%
-    ) !important;
+      rgba(255,255,255,.70),
+      rgba(255,255,255,.34)
+    );
 
-  opacity: 0.72 !important;
-  mix-blend-mode: screen !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    0 10px 22px rgba(0,0,0,.08);
 }
 
-.main-card::after,
-.mini-card::after,
-.wide-card::after,
-.calendar::after,
-.month-panel::after {
-  content: "" !important;
-  position: absolute !important;
-  top: -45% !important;
-  left: -65% !important;
-  width: 56% !important;
-  height: 190% !important;
-  border-radius: inherit !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
+body.theme-cosmic .tab.active {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(194,179,255,.95),
+      rgba(105,220,255,.82)
+    );
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.34),
-    transparent
-  ) !important;
-
-  transform: rotate(18deg) !important;
-  opacity: 0.42 !important;
-  mix-blend-mode: screen !important;
+  color: #11152d;
 }
 
-/* content above shine */
-.main-card > *,
-.mini-card > *,
-.wide-card > *,
-.calendar > *,
-.month-panel > * {
-  position: relative !important;
-  z-index: 1 !important;
+/* ==================================================
+   THEME SWITCH
+   ================================================== */
+
+.theme-switch {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 18px auto 24px;
+}
+
+.theme-chip {
+  border: 1px solid var(--line);
+
+  border-radius: 16px;
+
+  padding: 10px 16px;
+
+  background: var(--card);
+
+  color: var(--muted);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: var(--shadow);
+}
+
+.theme-chip.active {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent2)
+    );
+
+  box-shadow:
+    0 0 24px rgba(123,108,255,.28),
+    0 12px 28px rgba(0,0,0,.12);
+}
+
+body.theme-cosmic .theme-chip.active {
+  color: #11142b;
+}
+
+/* ==================================================
+   TODAY LABEL
+   ================================================== */
+
+.date-label {
+  text-align: center;
+
+  margin: 0 0 14px;
+
+  color: var(--muted);
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ==================================================
+   MAIN CARD
+   ================================================== */
+
+.main-card {
+  border-radius: var(--radius-lg);
+
+  padding: 30px 20px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.22),
+      rgba(255,255,255,.08)
+    );
+
+  border: 1px solid rgba(255,255,255,.50);
+
+  box-shadow:
+    0 0 30px rgba(115,221,255,.12),
+    var(--shadow);
+}
+
+body.theme-cosmic .main-card {
+  background:
+    radial-gradient(
+      circle at 75% 20%,
+      rgba(105,220,255,.18),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(175,120,255,.18),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      145deg,
+      rgba(10,14,40,.24),
+      rgba(10,14,40,.08)
+    );
+
+  border: 1px solid rgba(105,220,255,.35);
+
+  box-shadow:
+    0 0 34px rgba(105,220,255,.20),
+    0 0 80px rgba(175,120,255,.12),
+    var(--shadow);
+}
+
+.phase-label {
+  color: var(--accent);
+
+  font-size: 15px;
+  font-weight: 800;
+
+  margin-bottom: 18px;
+}
+
+.main-card h1 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  letter-spacing: -.04em;
+}
+
+.main-card p {
+  margin-top: 10px;
+
+  color: var(--muted);
+
+  line-height: 1.5;
+}
+
+/* ==================================================
+   MY.ASTRO MOON
+   PART 2
+   Moon / Calendar / Details / Animations
+   ================================================== */
+
+/* ==================================================
+   MOON ORB
+   ================================================== */
+
+.moon-visual-wrap {
+  position: relative;
+
+  width: 180px;
+  height: 180px;
+
+  margin: 0 auto 24px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
 }
 
 .moon-visual-wrap::before {
   content: "";
+
   position: absolute;
-  width: 220px;
-  height: 220px;
+  inset: -24px;
+
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.08);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: orbitRotate 32s linear infinite;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(105,220,255,.32),
+      transparent 70%
+    );
+
+  filter: blur(24px);
+
+  animation: moonAura 6s ease-in-out infinite;
+}
+
+body.theme-cosmic .moon-visual-wrap::before {
+  background:
+    radial-gradient(
+      circle,
+      rgba(105,220,255,.42),
+      transparent 70%
+    );
+}
+
+@keyframes moonAura {
+  0%,100%{
+    transform: scale(1);
+    opacity:.7;
+  }
+
+  50%{
+    transform: scale(1.12);
+    opacity:1;
+  }
 }
 
 .moon-visual-wrap::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #7de7ff;
-  top: 0;
-  left: 50%;
-  margin-left: -3px;
-  box-shadow:
-    0 0 12px #7de7ff,
-    0 0 24px #7de7ff;
+  content:"";
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.10);
+
+  animation: orbitRotate 32s linear infinite;
 }
 
-@keyframes orbitRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
+@keyframes orbitRotate{
+  from{
+    transform:rotate(0deg);
   }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
+
+  to{
+    transform:rotate(360deg);
   }
 }
+
+.moon-visual {
+  position: relative;
+
+  width: 122px;
+  height: 122px;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255,255,255,.95) 0 5px,
+      transparent 7px
+    ),
+
+    radial-gradient(
+      circle at 62% 36%,
+      rgba(160,160,180,.26) 0 8px,
+      transparent 10px
+    ),
+
+    radial-gradient(
+      circle at 45% 70%,
+      rgba(150,150,170,.22) 0 7px,
+      transparent 9px
+    ),
+
+    radial-gradient(
+      circle at 40% 40%,
+      #fbfdff 0%,
+      #d4dced 45%,
+      #8b97b5 100%
+    );
+
+  box-shadow:
+    inset -16px -18px 26px rgba(37,40,65,.28),
+    inset 12px 10px 20px rgba(255,255,255,.45),
+    0 0 40px rgba(255,255,255,.25),
+    0 20px 50px rgba(123,108,255,.18);
+}
+
+body.theme-cosmic .moon-visual {
+  box-shadow:
+    inset -16px -18px 28px rgba(0,0,0,.45),
+    inset 10px 10px 18px rgba(255,255,255,.22),
+    0 0 40px rgba(105,220,255,.18),
+    0 0 80px rgba(194,179,255,.18);
+}
+
+.moon-shadow {
+  position: absolute;
+
+  inset: -2px;
+
+  border-radius: 50%;
+
+  background: #eef2fb;
+
+  transform: translateX(-50%);
+
+  transition:
+    transform .35s ease,
+    opacity .35s ease;
+}
+
+body.theme-cosmic .moon-shadow {
+  background: #171832;
+}
+
+/* ==================================================
+   MOON STATS
+   ================================================== */
 
 .moon-stats {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin: 18px 0;
+  display:flex;
+  justify-content:center;
+  gap:24px;
+
+  margin:18px 0;
 }
+
 .moon-stat {
-  text-align: center;
+  text-align:center;
 }
+
 .moon-stat span {
-  display: block;
-  font-size: 11px;
-  opacity: .65;
+  display:block;
+
+  font-size:11px;
+
+  color:var(--muted);
 }
+
 .moon-stat strong {
-  display: block;
-  margin-top: 4px;
-  font-size: 16px;
-  font-weight: 700;
+  display:block;
+
+  margin-top:4px;
+
+  font-size:16px;
+  font-weight:700;
+}
+
+/* ==================================================
+   GRID
+   ================================================== */
+
+.cards-grid {
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:14px;
+
+  margin-top:18px;
+}
+
+.mini-card,
+.wide-card {
+  border-radius: var(--radius-md);
+
+  border:1px solid var(--line);
+
+  background: var(--card);
+
+  box-shadow: var(--shadow);
+}
+
+.mini-card {
+  padding:16px;
+  min-height:150px;
+}
+
+.wide-card {
+  padding:18px;
+  margin-top:14px;
+}
+
+.mini-title {
+  display:block;
+
+  margin-bottom:10px;
+
+  color:var(--muted);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.mini-card strong {
+  display:block;
+
+  margin-bottom:10px;
+
+  font-size:18px;
+  font-weight:800;
+}
+
+.mini-card p,
+.wide-card p {
+  margin:0;
+
+  color:var(--muted);
+
+  line-height:1.5;
+}
+
+/* ==================================================
+   MONTH PANEL
+   ================================================== */
+
+.month-panel {
+  margin-top:6px;
+
+  padding:12px;
+
+  display:grid;
+
+  grid-template-columns:
+    44px
+    1fr
+    44px;
+
+  gap:8px;
+
+  align-items:center;
+
+  border-radius:24px;
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  box-shadow:var(--shadow);
+}
+
+.month-panel h2 {
+  margin:0;
+
+  text-align:center;
+
+  font-size:18px;
+  font-weight:800;
+}
+
+.month-panel p {
+  margin:4px 0 0;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.nav-btn {
+  width:44px;
+  height:44px;
+
+  border-radius:15px;
+
+  border:1px solid var(--line);
+
+  background:var(--card);
+
+  color:var(--text);
+
+  cursor:pointer;
+
+  font-size:26px;
+}
+
+/* ==================================================
+   CALENDAR
+   ================================================== */
+
+.calendar {
+  margin-top:14px;
+
+  padding:14px;
+
+  border-radius:var(--radius-lg);
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  box-shadow:var(--shadow);
+}
+
+.weekdays,
+.days {
+  display:grid;
+
+  grid-template-columns:
+    repeat(7,1fr);
+
+  gap:7px;
+}
+
+.weekdays {
+  margin-bottom:8px;
+}
+
+.weekdays span {
+  text-align:center;
+
+  font-size:11px;
+
+  color:var(--muted);
+
+  font-weight:700;
+}
+
+/* ==================================================
+   DAY CELL
+   ================================================== */
+
+.day {
+  position:relative;
+
+  min-height:52px;
+
+  border-radius:15px;
+
+  border:1px solid var(--line);
+
+  background:var(--card);
+
+  cursor:pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.day:hover {
+  transform:translateY(-2px);
+}
+
+.day:active {
+  transform:scale(.96);
+}
+
+.day.empty {
+  opacity:0;
+  pointer-events:none;
+}
+
+.day.today {
+  outline:2px solid rgba(123,108,255,.35);
+}
+
+.day.selected {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(123,108,255,.25),
+      rgba(115,221,255,.22)
+    );
+
+  box-shadow:
+    0 0 0 3px rgba(123,108,255,.12),
+    0 0 24px rgba(115,221,255,.16);
+}
+
+body.theme-cosmic .day.selected {
+  border-color:rgba(105,220,255,.45);
+}
+
+.day-number {
+  display:block;
+
+  margin-top:5px;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.moon {
+  display:block;
+
+  margin-top:2px;
+
+  font-size:17px;
+}
+
+.event-dot {
+  position:absolute;
+
+  top:6px;
+  right:6px;
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#f4d57c;
+
+  box-shadow:
+    0 0 10px rgba(244,213,124,.8);
+}
+
+/* ==================================================
+   DETAILS
+   ================================================== */
+
+.info-grid {
+  display:grid;
+  gap:12px;
+
+  margin-top:16px;
+}
+
+.info-card {
+  padding:14px;
+
+  border-radius:18px;
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+}
+
+.info-card strong {
+  display:block;
+
+  margin-bottom:6px;
+
+  font-size:14px;
+}
+
+.info-card p {
+  margin:0;
+
+  color:var(--muted);
+
+  line-height:1.5;
+}
+
+.tag-list {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+
+  margin-top:16px;
+}
+
+.tag {
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(123,108,255,.18),
+      rgba(115,221,255,.18)
+    );
+
+  border:1px solid rgba(123,108,255,.18);
+
+  font-size:12px;
+  font-weight:700;
+}
+
+.details-empty {
+  text-align:center;
+
+  color:var(--muted);
+}
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+
+.footer-link {
+  margin-top:24px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:14px;
+  font-weight:700;
+}
+
+/* ==================================================
+   HELPERS
+   ================================================== */
+
+.hidden {
+  display:none;
+}
+
+/* ==================================================
+   CARD APPEAR
+   ================================================== */
+
+.main-card,
+.mini-card,
+.wide-card,
+.calendar,
+.month-panel {
+  animation:fadeUp .5s ease;
+}
+
+@keyframes fadeUp {
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width:420px){
+
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .moon-visual-wrap{
+    width:160px;
+    height:160px;
+  }
+
+  .moon-visual{
+    width:110px;
+    height:110px;
+  }
+
+  .main-card h1{
+    font-size:24px;
+  }
 }
